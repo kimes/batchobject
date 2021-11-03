@@ -25,7 +25,6 @@ public class BatchObject {
         Matcher matcher = pattern.matcher(batch);
 
         while (matcher.find()) {
-            System.out.println("MATCHED: " + matcher.group(1) + " | " + matcher.group(2));
             if (Objects.requireNonNull(matcher.group(2)).matches(REGEX_INT)) {
                 values.put(matcher.group(1),
                         Integer.parseInt(Objects.requireNonNull(matcher.group(2))));
