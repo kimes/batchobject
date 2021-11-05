@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 public class BatchObject {
 
     // REGEX = "(?>-(\\w{1,})) (?>\"([\\w\\-:. ]{1,})\")"
+    // CHECK FOR DOUBLE
+    // "(\\d{1,}\\.\\d{1,})|(\"\\d{1,}\\.\\d{1,}\")"
     private static final String REGEX_NAME = "\\w{1,}",
             REGEX_INT = "\\d{1,}",
             REGEX_DOUBLE = "\\d{1,}\\.\\d{1,}",
@@ -102,7 +104,10 @@ public class BatchObject {
             String key = entry.getKey();
             Object value = entry.getValue();
             if (value instanceof Integer) text += "-" + key + " " + value + " ";
-            else if (value instanceof Double) text += "-" + key + " " + value + " ";
+            else if (value instanceof Double) {
+                String doubleText = String.format("%.2f", value);
+                text += "-" + key + " " + doubleText + " ";
+            }
             else if (value instanceof Boolean) text += "-" + key + " \"" + value + "\" ";
             else text += "-" + key + " \"" + value + "\" ";
             //text += "-" + entry.getKey() + " \"" + entry.getValue() + "\" ";
