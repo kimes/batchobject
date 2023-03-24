@@ -68,7 +68,13 @@ public class BatchObject {
     public double getDouble(String name) throws BatchObjectException {
         if (values.containsKey(name)) {
             if (values.get(name) instanceof Double) return (double)values.get(name);
-            else throw new BatchObjectException("Value not instance of double");
+            else {
+                try {
+                    Double.parseDouble(values.get(name) + "");
+                } catch (NumberFormatException e) {
+                    throw new BatchObjectException("Value not instance of double");
+                }
+            }
         } else throw new BatchObjectException("No value for " + name);
     }
 
