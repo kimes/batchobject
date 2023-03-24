@@ -70,7 +70,7 @@ public class BatchObject {
             if (values.get(name) instanceof Double) return (double)values.get(name);
             else {
                 try {
-                    Double.parseDouble(values.get(name) + "");
+                    return Double.parseDouble(values.get(name) + "");
                 } catch (NumberFormatException e) {
                     throw new BatchObjectException("Value not instance of double");
                 }
